@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fretto: teoría musical para guitarra</title>
+  <meta name="description" content="Curso completo e interactivo de teoría musical aplicada a la guitarra: notas, ritmo, tablatura, partitura, acordes, escalas, armonía, modos e improvisación, con diapasón, metrónomo y afinador.">
+  <meta name="theme-color" content="#f2f3ef">
+  <meta property="og:title" content="Fretto: teoría musical para guitarra">
+  <meta property="og:description" content="De la primera nota a la armonía de jazz, con diapasones, acordes y partituras que suenan.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/sourceserif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>
+    /* Aplica el tema guardado antes de pintar para evitar parpadeos */
+    try { var s = JSON.parse(localStorage.getItem('fretto.settings') || '{}'); if (s.theme === 'light' || s.theme === 'dark') document.documentElement.setAttribute('data-theme', s.theme); } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="app" id="app">
+    <aside class="neck" id="neck" aria-label="Temario"></aside>
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+    <div class="main">
+      <header class="topbar">
+        <button type="button" class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir el temario" aria-expanded="false" aria-controls="neck">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="crumbs" id="crumbs"></div>
+        <div class="spacer"></div>
+        <span class="seg-label" id="namingLbl">Notas</span>
+        <div class="seg" id="namingSeg" role="group" aria-labelledby="namingLbl">
+          <button type="button" data-v="latin" aria-pressed="true">Do Re Mi</button>
+          <button type="button" data-v="english" aria-pressed="false">C D E</button>
+        </div>
+        <button type="button" class="icon-btn" id="themeBtn" aria-label="Cambiar tema"></button>
+        <button type="button" class="icon-btn" id="settingsBtn" aria-label="Ajustes" aria-expanded="false" aria-controls="settingsPop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+        </button>
+        <div class="popover" id="settingsPop" hidden role="dialog" aria-label="Ajustes"></div>
+      </header>
+      <main id="main" class="page" tabindex="-1"></main>
+      <footer class="foot">
+        <span>Fretto: teoría musical para guitarra.</span>
+        <span>Tu progreso se guarda solo en este navegador.</span>
+      </footer>
+    </div>
+  </div>
+  <noscript><p style="padding:24px;font-family:sans-serif">Fretto necesita JavaScript para mostrar el diapasón, las partituras y el sonido.</p></noscript>
+
+  <script src="assets/js/theory.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/fretboard.js"></script>
+  <script src="assets/js/notation.js"></script>
+  <script src="assets/js/widgets.js"></script>
+  <script src="assets/js/tools.js"></script>
+  <script src="assets/js/glossary.js"></script>
+  <script src="assets/js/lessons/n1.js"></script>
+  <script src="assets/js/lessons/n2.js"></script>
+  <script src="assets/js/lessons/n3.js"></script>
+  <script src="assets/js/lessons/n4.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

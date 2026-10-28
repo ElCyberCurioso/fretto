@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fretto</title>
+  <script>
+    // Redirige cualquier ruta desconocida a la portada de la web (funciona en subcarpetas de GitHub Pages)
+    // Un solo intento (?r=1) para no entrar nunca en un bucle de redirecciones
+    if (location.search.indexOf('r=1') === -1) {
+      var parts = location.pathname.split('/').filter(Boolean);
+      var base = location.hostname.endsWith('github.io') && parts.length > 1 ? '/' + parts[0] + '/' : '/';
+      location.replace(base + '?r=1');
+    }
+  </script>
+</head>
+<body style="font-family:sans-serif;padding:24px">
+  <p>Esta página no existe. <a href="./">Ir a Fretto</a></p>
+</body>
+</html>
