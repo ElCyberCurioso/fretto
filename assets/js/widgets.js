@@ -343,6 +343,7 @@
       return `M${x1} ${y1} A${r2} ${r2} 0 0 1 ${x2} ${y2} L${x3} ${y3} A${r1} ${r1} 0 0 0 ${x4} ${y4} Z`;
     };
     const segs = [];
+    let ring = null;
     let sel = c.start || 0;
     for (let i = 0; i < 12; i++) {
       const a0 = (-90 - 15 + i * 30) * Math.PI / 180, a1 = (-90 + 15 + i * 30) * Math.PI / 180;
@@ -357,10 +358,23 @@
       const pick = (minor) => { sel = i; draw(minor); M.playChord(M.chordShape(minor ? COF_MIN[i] + 'm' : COF_MAJ[i]), 0, { dur: 1.8 }); };
       gM.addEventListener('click', () => pick(false));
       gm.addEventListener('click', () => pick(true));
-      [gM, gm].forEach((g, k) => g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(k === 1); } }));
+      [gM, gm].forEach((g, k) => {
+        g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(k === 1); } });
+        // Con ratón o dedo no se enfoca la casilla: así el navegador no dibuja su recuadro de foco
+        g.addEventListener('mousedown', (e) => e.preventDefault());
+        // Con teclado, contorno propio con la forma de la casilla, pintado encima de las vecinas
+        g.addEventListener('focus', () => {
+          if (!ring) return;
+          ring.setAttribute('d', g.querySelector('path').getAttribute('d'));
+          ring.style.display = '';
+        });
+        g.addEventListener('blur', () => { if (ring) ring.style.display = 'none'; });
+      });
       segs.push({ gM, gm });
     }
     const center = M.svg('g', { class: 'cof-center' }, root);
+    ring = M.svg('path', { class: 'cof-ring', 'aria-hidden': 'true' }, root);
+    ring.style.display = 'none';
     function drawCenter(f) {
       while (center.firstChild) center.removeChild(center.firstChild);
       const s = 7, x0 = 150, top = 178;
